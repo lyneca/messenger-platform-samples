@@ -272,6 +272,7 @@ function receivedMessage(event) {
         break;
       case 'top 9 day':
         break;
+	}	
   }
 }
 
