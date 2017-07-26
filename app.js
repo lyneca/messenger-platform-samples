@@ -82,7 +82,6 @@ app.get('/webhook', function(req, res) {
  */
 app.post('/webhook', function (req, res) {
   var data = req.body;
-	console.log(data)
 
   // Make sure this is a page subscription
   if (data.object == 'page') {
@@ -224,7 +223,6 @@ function receivedMessage(event) {
 
   console.log("Received message for user %d and page %d at %d with message:", 
     senderID, recipientID, timeOfMessage);
-  console.log(JSON.stringify(message));
 
   var isEcho = message.is_echo;
   var messageId = message.mid;
@@ -259,7 +257,6 @@ function receivedMessage(event) {
       case 'top':
 			request.get({"json": true, url: "https://reddit.com/r/PrequelMemes/top/.json?count=1"}, function(error, response, body) {
 				var post = body.data.children[0].data;
-				console.log(post)
 				sendTextMessage(senderID, post.title);
 				sendImageMessage(senderID, post.url);
 			});
@@ -267,7 +264,6 @@ function receivedMessage(event) {
       case 'new':
 			request.get({"json": true, url: "https://reddit.com/r/PrequelMemes/new/.json?count=1"}, function(error, response, body) {
 				var post = body.data.children[0].data;
-				console.log(post)
 				sendTextMessage(senderID, post.title);
 				sendImageMessage(senderID, post.url);
 			});
