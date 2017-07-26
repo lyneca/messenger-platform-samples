@@ -260,34 +260,6 @@ function receivedMessage(event) {
         sendImageMessage(senderID);
         break;
 
-      case 'gif':
-        sendGifMessage(senderID);
-        break;
-
-      case 'audio':
-        sendAudioMessage(senderID);
-        break;
-
-      case 'video':
-        sendVideoMessage(senderID);
-        break;
-
-      case 'file':
-        sendFileMessage(senderID);
-        break;
-
-      case 'button':
-        sendButtonMessage(senderID);
-        break;
-
-      case 'generic':
-        sendGenericMessage(senderID);
-        break;
-
-      case 'receipt':
-        sendReceiptMessage(senderID);
-        break;
-
       case 'quick reply':
         sendQuickReply(senderID);
         break;        
@@ -303,10 +275,6 @@ function receivedMessage(event) {
       case 'typing off':
         sendTypingOff(senderID);
         break;        
-
-      case 'account linking':
-        sendAccountLinking(senderID);
-        break;
 
       default:
         sendTextMessage(senderID, messageText);
