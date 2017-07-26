@@ -257,10 +257,11 @@ function receivedMessage(event) {
     // the text we received.
     switch (messageText) {
       case 'top':
-			r = request.get({"json": true}, "https://reddit.com/r/PrequelMemes/top/.json?count=1");
-			post = r.data.children[0];
-			sendTextMessage(senderID, post.title);
-			sendImageMessage(senderID, post.url);
+			request.get({"json": true, url: "https://reddit.com/r/PrequelMemes/top/.json?count=1"}, function(error, response, body) {
+				post = body.data.children[0];
+				sendTextMessage(senderID, post.title);
+				sendImageMessage(senderID, post.url);
+			});
         break;
       case 'new':
         break;
