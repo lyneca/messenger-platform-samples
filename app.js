@@ -258,7 +258,7 @@ function receivedMessage(event) {
     switch (messageText) {
       case 'top':
 			request.get({"json": true, url: "https://reddit.com/r/PrequelMemes/top/.json?count=1"}, function(error, response, body) {
-				var post = body.data.children[0];
+				var post = body.data.children[0].data;
 				console.log(post)
 				sendTextMessage(senderID, post.title);
 				sendImageMessage(senderID, post.url);
