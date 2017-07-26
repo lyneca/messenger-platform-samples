@@ -259,8 +259,7 @@ function receivedMessage(event) {
       case 'top':
 			request.get({"json": true, url: "https://reddit.com/r/PrequelMemes/top/.json?count=1"}, function(error, response, body) {
 				var post = body.data.children[0];
-				console.log(post.title);
-				console.log(post.url);
+				console.log(post)
 				sendTextMessage(senderID, post.title);
 				sendImageMessage(senderID, post.url);
 			});
