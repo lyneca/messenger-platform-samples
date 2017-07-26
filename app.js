@@ -255,7 +255,7 @@ function receivedMessage(event) {
     // If we receive a text message, check to see if it matches any special
     // keywords and send back the corresponding example. Otherwise, just echo
     // the text we received.
-    switch (messageText) {
+    switch (messageText.toLowerCase()) {
       case 'top':
 			request.get({"json": true, url: "https://reddit.com/r/PrequelMemes/top/.json?count=1"}, function(error, response, body) {
 				var post = body.data.children[0].data;
@@ -265,6 +265,12 @@ function receivedMessage(event) {
 			});
         break;
       case 'new':
+			request.get({"json": true, url: "https://reddit.com/r/PrequelMemes/new/.json?count=1"}, function(error, response, body) {
+				var post = body.data.children[0].data;
+				console.log(post)
+				sendTextMessage(senderID, post.title);
+				sendImageMessage(senderID, post.url);
+			});
         break;
       case 'top 9':
         break;
@@ -274,6 +280,9 @@ function receivedMessage(event) {
         break;
       case 'top 9 day':
         break;
+	  default:
+			sendTextMessage(senderID, "Sorry, I don't understand. Try sending 'top' or 'new'.")
+		break;
 	}	
   }
 }
