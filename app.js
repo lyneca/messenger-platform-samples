@@ -256,31 +256,22 @@ function receivedMessage(event) {
     // keywords and send back the corresponding example. Otherwise, just echo
     // the text we received.
     switch (messageText) {
-      case 'image':
-        sendImageMessage(senderID);
+      case 'top':
+			r = request.get({"json": true}, "https://reddit.com/r/PrequelMemes/top/.json?count=1");
+			post = r.data.children[0];
+			sendTextMessage(senderID, post.title);
+			sendImageMessage(senderID, post.url);
         break;
-
-      case 'quick reply':
-        sendQuickReply(senderID);
-        break;        
-
-      case 'read receipt':
-        sendReadReceipt(senderID);
-        break;        
-
-      case 'typing on':
-        sendTypingOn(senderID);
-        break;        
-
-      case 'typing off':
-        sendTypingOff(senderID);
-        break;        
-
-      default:
-        sendTextMessage(senderID, messageText);
-    }
-  } else if (messageAttachments) {
-    sendTextMessage(senderID, "Message with attachment received");
+      case 'new':
+        break;
+      case 'top 9':
+        break;
+      case 'new 9':
+        break;
+      case 'top 9 week':
+        break;
+      case 'top 9 day':
+        break;
   }
 }
 
@@ -377,7 +368,7 @@ function receivedAccountLink(event) {
  * Send an image using the Send API.
  *
  */
-function sendImageMessage(recipientId) {
+function sendImageMessage(recipientId, url) {
   var messageData = {
     recipient: {
       id: recipientId
@@ -386,7 +377,7 @@ function sendImageMessage(recipientId) {
       attachment: {
         type: "image",
         payload: {
-          url: SERVER_URL + "/assets/rift.png"
+          url: url
         }
       }
     }
